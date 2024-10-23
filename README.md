@@ -6,5 +6,6 @@ Typical post-processing tasks are the evaluation of time series from Bladed simu
 
 There are plenty more functionalities. It is not a sorted and well documented library, but I hope that reading through the scripts will clarify the usage and intention and serves as a basis for own Bladed pre- and post-processing. 
 
-Don't hesitate to ask, if there are any questions.
+Don't hesitate to ask if there are any questions.
+
 Fabian
