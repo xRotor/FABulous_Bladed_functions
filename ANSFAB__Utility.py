@@ -455,7 +455,13 @@ class Utility:
                         P_ea_denominator += P_ea_denominator_k
 
             equivalent_oscillation_amplitude = P_ea_denominator/average_speed_of_oscillation_ops
-            P_ea = pow(P_ea_numerator/P_ea_denominator, 1/p)
+            if P_ea_denominator: # in rare cases the denominator can be zero
+                P_ea = pow(P_ea_numerator/P_ea_denominator, 1/p)
+            else:
+                print('Warning: Rare case of a denominator that is zero has been triggered and P_ea is set to zero',
+                      ' manually. P_ea_numerator is', P_ea_numerator, ',  P_ea_denominator is', P_ea_denominator)
+                P_ea = 0
+
 
             if False:
                 print(len(amplitudes), amplitudes)
@@ -483,17 +489,17 @@ class Utility:
                 plot = self.easyPlotGraph(blade_root_Mxy_time_series, ax=axis, color='r')
 
         else:
-            P_ea = 0
             average_speed_of_oscillation_ops = 0
             equivalent_oscillation_amplitude = 0
-
-            print('# ---- new section for P_ea calculation of pitch bearing without movement in low wind speeds ---- #')
+            # P_ea = 0
+            # print('# --- new section for P_ea calculation of pitch bearing without movement in low wind speeds --- #')
             P_ea_k_standstill_TS = []
             for time_step, blade_root_Mxy in enumerate(blade_root_Mxy_time_series):
                 P_ea_k_standstill_TS.append(2.5 * blade_root_Mxy / bearing_raceway_diameter)  # in future, also axial and radial forces could be added!!! (see adjustment of NREL's DG03 in https://wes.copernicus.org/preprints/wes-2020-26/wes-2020-26.pdf, but root moment is expected to be clearly dominant)
             P_ea = self.calcBearingDamageFromTimeSeriesForConstSpeed(P_ea_k_standstill_TS, time_total, deltat, p=p)
 
-        print('P_ea=', P_ea / 1000, 'kN, N_ave=', average_speed_of_oscillation_ops * 60, 'opm, theta_e=',
+        if PrintDetails:
+            print('P_ea=', P_ea / 1000, 'kN, N_ave=', average_speed_of_oscillation_ops * 60, 'opm, theta_e=',
               equivalent_oscillation_amplitude * 180 / 3.14159265359, 'deg, leveled in', len(amplitudes), 'amplitudes')
 
        #return P_ea, P_ea_numerator, P_ea_denominator  # if more cycles have to be added, the numerator and denominator are vital

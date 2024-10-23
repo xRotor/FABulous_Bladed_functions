@@ -6,14 +6,28 @@ from ANSFAB__Utility import Bladed
 import os
 
 
+Include_Childfolder = True
 
 
-baseline_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_3B_ref_IAG_stall_new_DISCON\DLC14_3B_ref_ECD_IAG_stall'
-out_folder = baseline_folder +  r'_new'
+baseline_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\3Bref_IEA_Monopile_new_v2'
+baseline_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\2B101_all_IEA_Monopiles_DLC12_evalu\new\zz_DLC12_3B_MonoIEA9m_7modes_FA_damp_itr\itrFA_6seeds'
+out_folder = baseline_folder +  r'_no_damp'
+out_folder = baseline_folder +  r'_10min_TS'
+#out_folder = baseline_folder +  r'_2'
+#out_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\2B101ref_IEA_Monopile_new_v2_10min_TS\ignore__DLC61_2B101v15MonoIEA_82idle_new_Kaimal__IAG_stall'
 
-old_string = 'asds_mps_s1'
-new_string = 'mps_s6'
+old_string = r'sdasda_kaimal_5to25mps\ntm_kaimal_'
+new_string = r'_kaimal_5to25mps_10min\ntm_10min_kaimal_'
+old_string = r'_kaimal_5to25mps_10min\ntm_10min_kaimal_'
+new_string = r'_kaimal_5to25mps_10min_v2\ntm_10min_v2_kaimal_'
 
+if True:
+    old_string = []
+    new_string = []
+    old_string.append(r'_kaimal_5to25mps\ntm_kaimal_')
+    new_string.append(r'_kaimal_5to25mps_10min\ntm_10min_kaimal_')
+    old_string.append(r'MonoIEA9m_7mod_Kaimal')
+    new_string.append(r'MonoIEA9m_7mod_10min_Kaimal')
 
 
 search_string = '<SpectrumFilePath>'
@@ -27,18 +41,14 @@ replace_row = 'ENDT	 630\n'
 search_string = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_123PP_bode_based__with_use_teetering_4_for_LIPC_param.dll</Filepath>\n'
 search_string = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v25_5_3.dll</Filepath>\n'
 replace_row = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>\n'
-search_string = 'P6: maxOverspeedFactor=1.8 // factor on omega_r[default = 1.12]\n'
-replace_row = 'P6: maxOverspeedFactor=1.8; // factor on omega_r[default = 1.12]\n'
 search_string = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion_Debug.dll</Filepath>\n'
 replace_row = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>\n'
-
+search_string = 'P6: maxOverspeedFactor=1.8 // factor on omega_r[default = 1.12]\n'
+replace_row = 'P6: maxOverspeedFactor=1.8; // factor on omega_r[default = 1.12]\n'
 search_string = 'P12: towerFrequencyToAvoid='
 replace_row = 'P12: towerFrequencyToAvoid=0; // 0=not used, else frequency is tried to be avoided by 2P/3P; best 0.162\n'
 search_string = 'P11: factor_Pitch_FATowDamper='
 replace_row = 'P11: factor_Pitch_FATowDamper=0;  // 0=not used, default [2:0.4,5:0.4,7:0.3,9:0,11:0,13:0.04,15:0.05,17:0.04,19:0.15,21:0.14,23:0.1,25:0.12]\n'
-
-search_string = '        <Filepath>H:\BladedWS\BottomFixed'
-replace_row = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>\n'
 
 search_string = 'OPSTP'
 replace_row = 'OPSTP	 .04\n'
@@ -47,12 +57,56 @@ search_string = 'ENDT	 '
 replace_row = 'ENDT	 250\n'
 
 
+search_string = '        <Filepath>H:\BladedWS\BottomFixed'
+replace_row = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>\n'
+
+search_string = 'P11: factor_Pitch_FATowDamper='
+replace_row = 'P11: factor_Pitch_FATowDamper=[2:0.3,5:0.3,7:0.28,9:0.24,11:0.26,13:0.02,15:0.04,17:0.08,19:0.18,21:0.1,23:0.06,25:0.16];  // 0=not used\n'
+
+search_string = 'P12: towerFrequencyToAvoid='
+replace_row = 'P12: towerFrequencyToAvoid=0; // 0=not used, else frequency is tried to be avoided by 2P/3P, best 0.123\n'
+
+# LIPC Mono
+search_string = 'P11: factor_Pitch_FATowDamper='
+replace_row = 'P11: factor_Pitch_FATowDamper=[2:0.24,5:0.24,7:0.28,9:0.26,11:0.2,13:0.02,15:0,17:0.24,19:0.22,21:0.04,23:0.04,25:0.04];  // 0=not used\n'
+
+# 3B Mono
+search_string = 'P11: factor_Pitch_FATowDamper='
+replace_row = 'P11: factor_Pitch_FATowDamper=[2:0.4,5:0.4,7:0.4,9:0.2,11:0.06,13:0.04,15:0.08,17:0.08,19:0.1,21:0.12,23:0.08,25:0.08];  // 0=not used\n'
+
+
+search_string = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v31_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>'
+replace_row = '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v32_LIPC_OWT_and_v55_FOWT_fusion__newInitPitchAngle.dll</Filepath>\n'
+
+search_string = 'P11: factor_Pitch_FATowDamper='
+replace_row = 'P11: factor_Pitch_FATowDamper=[2:0.3,5:0.3,7:0.28,9:0.24,11:0.26,13:0.02,15:0.04,17:0.08,19:0.18,21:0.1,23:0.06,25:0.16];  // 0=not used\n'
+
+search_string = 'P11: factor_Pitch_FATowDamper='
+replace_row = 'P11: factor_Pitch_FATowDamper=0;  // 0=not used, [2:0.3,5:0.3,7:0.28,9:0.24,11:0.26,13:0.02,15:0.04,17:0.08,19:0.18,21:0.1,23:0.06,25:0.16]\n'
+
+search_string = '    <ModalRelaxationFactor>0.2</ModalRelaxationFactor>'
+replace_row =   '    <ModalRelaxationFactor>0.4</ModalRelaxationFactor>\n'
 
 
 #search_string = 'P14: use2B_upscaled='
 #replace_row = 'P14: use2B_upscaled=0; // 1 if 2B upscaled versions with same absolut power \nP15: use2B_teetering=0; // 1 if 2B teetering, 4 if LIPC else 0\n'
 
-Include_Childfolder = False
+if False: # change to IAG-stall
+    old_string = []
+    new_string = []
+    old_string.append(r'_kaimal_5to25mps\ntm_kaimal_')
+    new_string.append(r'_kaimal_5to25mps_10min\ntm_10min_kaimal_')
+    old_string.append(r'H:\BladedWS\windfiles_kaimal_ULS\ntm_kaimal_')
+    new_string.append(r'H:\BladedWS\windfiles_kaimal_5to25mps_10min\ntm_10min_kaimal_')
+    old_string.append(r'H:\BladedWS\BottomFixed\TeeterForcesByExternalLoads_damper_v2')
+    new_string.append(r'H:\BladedWS\BottomFixed\TeeterForcesByExternalLoads_damper_v5')
+
+    search_string = []
+    replace_row = []
+    search_string.append('        <Filepath>H:\BladedWS\BottomFixed\DTU_discon')
+    replace_row.append(  '        <Filepath>H:\BladedWS\BottomFixed\DTU_discon_v33_LIPC_OWT_and_v55_FOWT_fusion.dll</Filepath>\n')
+    search_string.append('TURBHTTYPE')
+    replace_row.append(  'TURBHTTYPE	0\n')
 
 if False: # change to IAG-stall
     search_string = []
@@ -115,7 +169,7 @@ if False:
         old_string.append('DLC21_')
         new_string.append('DLC22_')
 
-if True:
+if False:
     search_string = []
     replace_row = []
     search_string.append('Params	""')
@@ -161,7 +215,10 @@ if Include_Childfolder:
         childfiles = Utility().return_run_files_in_folder(subfolder)
         if childfiles:
             print('found in folder ---> ', subfolder, ' the files --->', childfiles)
-            new_sub_outfolder = os.path.join(out_folder, subfolder.split('\\')[-1])
+            if len(subfolders) == 1:
+                new_sub_outfolder = out_folder
+            else:
+                new_sub_outfolder = os.path.join(out_folder, subfolder.split('\\')[-1])
             print('creating folder ---> ', new_sub_outfolder)
             Utility().createFolderIfNotExcisting(new_sub_outfolder)
 
@@ -210,7 +267,7 @@ for infile, outfile in zip(infiles, outfiles):
         # else:
         for search_string_i, replace_row_i in zip(search_string, replace_row):
             if row.find(search_string_i) != -1:
-                print('replacing', row, 'by', replace_row_i)
+                print('replacing', row, '      by', replace_row_i)
                 row = replace_row_i
                 changed = True
         outfile.write(row)

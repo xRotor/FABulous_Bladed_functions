@@ -17,7 +17,7 @@ import ANSFAB__evaluateSpecificFolders_for_DEL_along_blades
 
 
 
-folderPlusFirstSnips = [r'H:\BladedWS\BottomFixed\DLC_legacy\2B101_all_IEA_Monopiles_DLC12_evalu\new\zz_DLC12_3B_MonoIEA9m_7modes_FA_damp_itr\itrFA_6seeds\\']
+folderPlusFirstSnips = [r'H:\BladedWS\BottomFixed\DLC_legacy\2B101ref_IEA_Monopile_new_v2_10min_TS\DLC12_2B101v15MonoIEA_exZ5_flexDamp__new_kaimal_10min_TS_v2\\']
 
 for folderPlusFirstSnip in folderPlusFirstSnips:
     print('\n \n \n evaluating ', folderPlusFirstSnip, '\n \n \n')

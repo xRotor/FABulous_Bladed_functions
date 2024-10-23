@@ -88,12 +88,12 @@ slavefile = r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_2B101v15_ref_IAG_st
 childmainfolder= r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_2B101v15_ref_IAG_stall\DLC12_2B101v15_exZ5_flexDamp__new_kaimal'
 out_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_2B101v15_ref_IAG_stall\DLC12_2B101v15_exZ5_UserLookUpTableDamp__new_kaimal_new_initPitch'
 
-slavefile = r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_3B_ref_IAG_stall\powprod.$PJ'
-childmainfolder= r'H:\BladedWS\BottomFixed\DLC_legacy\3Bref_IEA_Monopile\DLC62_3B_MonoIEA_parkedI91d_Edgewise2xDamped_Kaimal_IAG_stall'
-out_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\ExtremeDLCs_2B101v15_ref_IAG_stall_new_DISCON\DLC62_3B_ref_parkedI91d_Edgewise2xDamped_Kaimal_IAG_stall2'
+slavefile = r'H:\BladedWS\BottomFixed\DLC_legacy\2B101_all_IEA_Monopiles_DLC12_evalu\new\z_DLC12_2B101v18_MonoIEA9m_7modes_FA_damp_itr_LIPC\baselinefiles\2B101v19_MonoIEA9m_7mod_LIPC_Kaimal05mps_s105_FA_gain.$PJ'
+childmainfolder= r'H:\BladedWS\BottomFixed\DLC_legacy\2B101ref_IEA_Monopile'
+out_folder = r'H:\BladedWS\BottomFixed\DLC_legacy\2B101v19_LIPC_IEA_Monopile'
 
 outfiles = Bladed().automized_bulk_mstarts_in_files_changer(masterfile='', childmainfolder=childmainfolder, slavefile=slavefile,
-                                      outmainfolder=out_folder, change_snip='3B_MonoIEA_', new_snip='3B_ref_')
+                                      outmainfolder=out_folder, change_snip='2B101v15MonoIEA', new_snip='2B101v19LIPC_MonoIEA')
                                       #outmainfolder=out_folder, change_snip='_LIPC_lightBlades_', new_snip='_LIPC123_new_DISCON_')
                                       #outmainfolder=out_folder, change_snip='ref_ex5_flexDamp', new_snip='MonoIEA9m_7mod_ex012_noDamp')
                                       #outmainfolder=out_folder, change_snip='_ref_legacy_', new_snip='_MonoIEA9m_')
